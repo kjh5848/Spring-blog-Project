@@ -3,7 +3,36 @@ server:
     encoding:
       charset: utf-8
       force: true
+    #      세션의 생명주기
+    session:
+      timeout: 30m
   port: 8080
-
-
-
+# db 연결
+spring:
+  mustache:
+    servlet:
+      #      세션과 리퀘스트 저장 영역에 접근가능 코드
+      expose-session-attributes: true
+      expose-request-attributes: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=MySQL
+    username: sa
+    password:
+  #  콘솔 url 만드는 것
+  h2:
+    console:
+      enabled: true
+#  sql:
+#    init:
+#      data-locations:
+#        - classpath:db/data.sql
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    #         .sql 테이블을 만들기 위해
+#    defer-datasource-initialization: true
