@@ -2,6 +2,7 @@ package shop.mtcoding.blog.user;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,16 @@ public class UserController {
         }
 
         return "redirect:/loginForm";
+    }
+
+    public String join(UserRequest.JoinDTO requestDTO) {
+        //1. 유효성 검사 바디데이터가 없으면 필요없음.
+
+        //2. 모델 위임
+        userRepository.save(requestDTO);
+
+        return "user/loginForm";
+
     }
 
     @GetMapping("/joinForm")
